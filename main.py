@@ -1,14 +1,15 @@
 import csv
 
 file_name = 'Document.csv'
+text_menu = '\n***********************************\n***\tPICK UP MY TRASH v0.1\t***\n***********************************\n(1) - Load file\n(2) - Quit\n'
 
 #=========================================================
-def getFileName():
+def getFileName():                  #Takes users input and returns file_name
 
-    filename = str(input('Filnamn: '))
+    file_name = str(input('Filnamn: '))
     
-
     return file_name
+
 def readRawFile(fileName):          #Returns a list with the raw CSV-file
 
     csv_list = []
@@ -45,10 +46,25 @@ def writeModifiedFile():            #Writes modified_list to a CSV-file. Takes t
     pass
 #==========================================================
 
+def mainLoop():
+    
+    print(text_menu)
+    user_chooise = int(input('> '))
+
+    if(user_chooise == 1):
+        getFileName()
+    
+    if(user_chooise == 2):
+        SystemExit()
+        
 
 #TESTING/////////////////////////////////////////////////////////
-raw_list = readRawFile(file_name)
-new_list = modifyRawFile(raw_list)
-print(new_list[9][2])
-for i in range (101):
-    print(new_list[i]) 
+#raw_list = readRawFile(file_name)
+
+#new_list = modifyRawFile(raw_list)
+
+#print(new_list[9][2])
+#for i in range (101):
+#    print(new_list[i]) 
+
+mainLoop()
