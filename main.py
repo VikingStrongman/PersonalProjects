@@ -1,7 +1,7 @@
 import csv
 
-file_name = 'Document.csv'
-text_menu = '\n***********************************\n***\tPICK UP MY TRASH v0.1\t***\n***********************************\n(1) - Load file\n(2) - Quit\n'
+#file_name = 'Document.csv'
+text_menu = '\n***********************************\n***\tPICK UP MY TRASH v0.1\t***\n***********************************\n(1) - Load file\n(2) - Modify file\n(3) - Quit\n'
 
 #=========================================================
 def getFileName():                  #Takes users input and returns file_name
@@ -47,14 +47,28 @@ def writeModifiedFile():            #Writes modified_list to a CSV-file. Takes t
 #==========================================================
 
 def mainLoop():
-    
+    global test_variabel = 1 
+    global file_loaded 
+
     print(text_menu)
     user_chooise = int(input('> '))
 
-    if(user_chooise == 1):
-        getFileName()
+    if(user_chooise == 1):                          #Load file
+        test_variabel = readRawFile(getFileName())
+        file_loaded = True
+        print('File loaded')
+        mainLoop()
     
-    if(user_chooise == 2):
+    if(user_chooise == 2):                          #Modify file
+
+        if file_loaded:
+            print('Loading file...')
+            modifyRawFile(test_variabel)
+        else:
+            print('No file loaded')
+            mainLoop()
+
+    if(user_chooise == 3):                          #Quit
         SystemExit()
         
 
